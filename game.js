@@ -134,7 +134,7 @@ function spawnEnemies(){
         ly:Math.sin(angle)
      }
 
-        Enemies.push(new Enemy(a,b,r,color,vel.lx*5,vel.ly*5))
+        Enemies.push(new Enemy(a,b,r,color,vel.lx,vel.ly))
     },1000);
 }
 let aid;
@@ -146,6 +146,7 @@ let aid;
     aid=requestAnimationFrame(updaterec);
     player()
       for(p of part){
+          p.update()
         if(p.alpha<=0){
             part.splice(part.indexOf(p),1);
         }}
