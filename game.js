@@ -98,7 +98,7 @@ function spawnEnemies(){
         ly:Math.sin(angle)
      }
 
-        Enemies.push(new Enemy(a,b,r,color,vel.lx*1.5,vel.ly*1.5))
+        Enemies.push(new Enemy(a,b,r,color,vel.lx*5,vel.ly*5))
     },1000);
 }
 let aid;
