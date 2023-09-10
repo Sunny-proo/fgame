@@ -181,7 +181,7 @@ let aid;
                 
                 setTimeout(()=>{
                prj.splice(idx2,1),0
-                })else{
+                })}else{
             setTimeout(()=>{
                 Enemies.splice(idx,1)
            prj.splice(idx2,1),0
