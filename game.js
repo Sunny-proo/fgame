@@ -71,7 +71,43 @@ class Enemy{
         this.y+=this.sy;
         
 }}
+part=[];
+let fric=0.99;
+class Particle{
+    constructor(x,y,r,color,sx,sy){
+        this.x=x;
+        this.y=y;
+        this.r=r;
+        // this.vel=velo
+        this.alpha=1;
+        this.sx=sx;
+        this.sy=sy;
+       this.color=color;
+       
 
+        
+    }
+    
+    draw(){ 
+        context.save();
+        context.globalAlpha=this.alpha;
+    context.beginPath();
+    context.arc(this.x,this.y,this.r,0,2*Math.PI);
+        context.fillStyle=this.color;
+        context.fill();
+    
+   context.restore();
+    }
+    update(){
+
+        this.draw();
+        this.sx*=fric;
+        this.sy*=fric;
+        this.alpha-=0.01
+        this.x+=this.sx;
+        this.y+=this.sy;
+        
+}}
               
 
 Enemies=[];
@@ -109,6 +145,10 @@ let aid;
     
     aid=requestAnimationFrame(updaterec);
     player()
+      for(p of part){
+        if(p.alpha<=0){
+            part.splice(part.indexOf(p),1);
+        }
    for(pr of prj){
 
     pr.update();
@@ -131,14 +171,23 @@ let aid;
         let dist=Math.hypot(p.x-e.x,p.y-e.y);
         
         if(dist<e.r+p.r){
-           
+            if(dist<e.r+p.r){
+            for(let i=0;i<e.r*2;i++){
+                part.push(new Particle(p.x,p.y,Math.random()*3,e.color,(Math.random()-0.5)*(Math.random()*6),(Math.random()-0.5)*(Math.random()*6)))
+            }
             let idx=Enemies.indexOf(e);
            
             let idx2=prj.indexOf(p)
+                 if(e.r-10>10){
+                gsap.to(e,{r:e.r-10})
+                
+                setTimeout(()=>{
+               prj.splice(idx2,1),0
+                })else{
             setTimeout(()=>{
                 Enemies.splice(idx,1)
            prj.splice(idx2,1),0
-            })
+            })}
            
         }
     }
