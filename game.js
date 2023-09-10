@@ -148,7 +148,7 @@ let aid;
       for(p of part){
         if(p.alpha<=0){
             part.splice(part.indexOf(p),1);
-        }
+        }}
    for(pr of prj){
 
     pr.update();
@@ -169,8 +169,6 @@ let aid;
     }
     for(p of prj){
         let dist=Math.hypot(p.x-e.x,p.y-e.y);
-        
-        if(dist<e.r+p.r){
             if(dist<e.r+p.r){
             for(let i=0;i<e.r*2;i++){
                 part.push(new Particle(p.x,p.y,Math.random()*3,e.color,(Math.random()-0.5)*(Math.random()*6),(Math.random()-0.5)*(Math.random()*6)))
